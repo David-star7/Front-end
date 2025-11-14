@@ -1,0 +1,74 @@
+:root {
+  /* Fondos y Estructura */
+  --color-primary-dark: #121422; 
+  --color-secondary-dark: #1C2036; 
+  
+  /* ✨ Acentos  */
+  --color-accent-blue: #4A90E2; 
+  --color-accent-magenta: #FF69B4; 
+  --color-glow-shadow: rgba(74, 144, 226, 0.5); 
+  
+  /* Texto */
+  --color-text-light: #F0F0F0; 
+  --color-text-secondary: #B0B0C0; 
+
+  /* Tipografía y Espaciado */
+  --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+}
+
+* {
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
+  font-family: var(--font-base);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--color-accent-magenta);
+}
+
+/* Contenedor Principal de la Aplicación */
+.app-container {
+  width: 90%; 
+  max-width: 1400px;
+  margin: var(--spacing-lg) auto;
+  padding: var(--spacing-lg);
+}
+
+/* Estilo Base para Botones */
+button, .btn {
+  background-color: var(--color-accent-blue);
+  color: var(--color-text-light);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  text-transform: uppercase;
+}
+
+button:hover, .btn:hover {
+  background-color: var(--color-accent-magenta);
+  box-shadow: 0 0 10px var(--color-glow-shadow);
+}
