@@ -1,0 +1,104 @@
+
+
+.game-details-container {
+    padding: var(--spacing-lg) 0;
+    max-width: 1200px; 
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* --- SECCIÓN PRINCIPAL DE DETALLES (FOTO, TÍTULO, INFO) --- */
+.details-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+    gap: var(--spacing-lg);
+    
+    background-color: var(--color-secondary-dark); 
+    padding: var(--spacing-lg);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: var(--spacing-lg);
+}
+
+.details-cover-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 3px solid var(--color-accent-blue); 
+}
+
+.details-info {
+    padding-left: var(--spacing-md);
+}
+
+.details-title {
+    font-size: 3rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-accent-magenta);
+    padding-bottom: var(--spacing-sm);
+}
+
+.details-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-accent-blue);
+    margin-bottom: var(--spacing-md);
+    font-weight: 400;
+}
+
+.details-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* --- Tags de Información (Plataforma, Género, Estado) --- */
+.details-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.details-tag {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-light);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-accent-blue);
+}
+
+/* --- SECCIÓN DE RESEÑAS Y ESTADÍSTICAS --- */
+.details-review-section,
+.details-stats-section {
+    padding: var(--spacing-lg) 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--color-accent-magenta);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+}
+
+/* Contenedor de la lista de reseñas (donde irán las ReviewCard) */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .details-header {
+       
+        grid-template-columns: 1fr; 
+        gap: var(--spacing-md);
+    }
+    
+    .details-info {
+        padding-left: 0;
+    }
+}
