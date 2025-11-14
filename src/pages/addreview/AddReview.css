@@ -1,0 +1,39 @@
+
+
+.add-review-page {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: var(--spacing-lg) 0;
+    min-height: calc(100vh - 150px); 
+    width: 100%;
+}
+
+
+.add-review-title {
+    font-size: 2.5rem;
+    color: var(--color-accent-blue); 
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.add-review-for-game {
+    font-size: 1.2rem;
+    color: var(--color-accent-magenta); 
+    margin-bottom: var(--spacing-lg);
+    font-style: italic;
+}
+
+
+@media (max-width: 600px) {
+    .add-review-title {
+        font-size: 2rem;
+    }
+    
+    .add-review-for-game {
+        font-size: 1rem;
+    }
+}

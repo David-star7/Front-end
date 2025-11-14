@@ -37,3 +37,5 @@ function GameCard({ game }) {
         </div>
     );
 }
+
+export default GameCard;

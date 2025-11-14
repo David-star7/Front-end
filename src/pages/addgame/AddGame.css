@@ -1,0 +1,40 @@
+
+
+.add-game-page {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: var(--spacing-lg) 0;
+    min-height: calc(100vh - 150px); 
+    width: 100%;
+}
+
+/* --- Título de la Página --- */
+.add-game-title {
+    font-size: 2.5rem;
+    color: var(--color-accent-magenta); 
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.add-game-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+
+
+/* Media Query para mejorar la visibilidad en móviles */
+@media (max-width: 600px) {
+    .add-game-title {
+        font-size: 2rem;
+    }
+    
+    .add-game-page {
+        padding: var(--spacing-md);
+    }
+}
