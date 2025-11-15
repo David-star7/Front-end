@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <main className="container">
+      <main className="app-container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/games" element={<Games />} />

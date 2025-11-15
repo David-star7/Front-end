@@ -1,104 +1,77 @@
-
-
-.game-details-container {
-    padding: var(--spacing-lg) 0;
-    max-width: 1200px; 
-    width: 90%;
-    margin: 0 auto;
+.reviews-page {
+  margin-top: 30px;
 }
 
-/* --- SECCIÓN PRINCIPAL DE DETALLES (FOTO, TÍTULO, INFO) --- */
-.details-header {
-    display: grid;
-    grid-template-columns: 1fr 2fr; 
-    gap: var(--spacing-lg);
-    
-    background-color: var(--color-secondary-dark); 
-    padding: var(--spacing-lg);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    margin-bottom: var(--spacing-lg);
+.reviews-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: var(--color-text-light);
 }
 
-.details-cover-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 6px;
-    border: 3px solid var(--color-accent-blue); 
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
-.details-info {
-    padding-left: var(--spacing-md);
+/* Tarjeta de reseña */
+.review-card {
+  background: var(--color-secondary-dark);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 20px rgba(74, 144, 226, 0.15);
+  transition: 0.3s ease;
 }
 
-.details-title {
-    font-size: 3rem;
-    color: var(--color-text-light);
-    margin-bottom: var(--spacing-sm);
-    border-bottom: 2px solid var(--color-accent-magenta);
-    padding-bottom: var(--spacing-sm);
+.review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(74, 144, 226, 0.35);
 }
 
-.details-subtitle {
-    font-size: 1.2rem;
-    color: var(--color-accent-blue);
-    margin-bottom: var(--spacing-md);
-    font-weight: 400;
+.review-game {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: var(--color-accent-blue);
 }
 
-.details-description {
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
+.review-stars {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
 }
 
-/* --- Tags de Información (Plataforma, Género, Estado) --- */
-.details-tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
+.review-text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 15px;
 }
 
-.details-tag {
-    background-color: var(--color-primary-dark);
-    color: var(--color-text-light);
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    border: 1px solid var(--color-accent-blue);
+.review-meta p {
+  margin: 4px 0;
 }
 
-/* --- SECCIÓN DE RESEÑAS Y ESTADÍSTICAS --- */
-.details-review-section,
-.details-stats-section {
-    padding: var(--spacing-lg) 0;
+.review-date {
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  text-align: right;
 }
 
-.section-title {
-    font-size: 2rem;
-    color: var(--color-accent-magenta);
-    margin-bottom: var(--spacing-md);
-    text-transform: uppercase;
+.no-reviews {
+  text-align: center;
+  color: var(--color-text-secondary);
 }
 
-/* Contenedor de la lista de reseñas (donde irán las ReviewCard) */
-.reviews-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
+/* Responsivo */
+@media (max-width: 900px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* Media Query para pantallas pequeñas */
-@media (max-width: 768px) {
-    .details-header {
-       
-        grid-template-columns: 1fr; 
-        gap: var(--spacing-md);
-    }
-    
-    .details-info {
-        padding-left: 0;
-    }
+@media (max-width: 600px) {
+  .reviews-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

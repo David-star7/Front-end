@@ -1,40 +1,114 @@
-
-
-.add-game-page {
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    padding: var(--spacing-lg) 0;
-    min-height: calc(100vh - 150px); 
-    width: 100%;
+.addgame-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  width: 100%;
 }
 
-/* --- Título de la Página --- */
-.add-game-title {
-    font-size: 2.5rem;
-    color: var(--color-accent-magenta); 
-    text-align: center;
-    margin-bottom: var(--spacing-md);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+.addgame-card {
+  background: var(--color-secondary-dark);
+  padding: 35px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 650px;
+  box-shadow: 0 0 20px rgba(74, 144, 226, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.add-game-subtitle {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-lg);
+.addgame-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--color-accent-blue);
+  text-shadow: 0 0 10px rgba(74, 144, 226, 0.6);
 }
 
+.addgame-form .form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
 
+.addgame-form label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
 
-/* Media Query para mejorar la visibilidad en móviles */
-@media (max-width: 600px) {
-    .add-game-title {
-        font-size: 2rem;
-    }
-    
-    .add-game-page {
-        padding: var(--spacing-md);
-    }
+.addgame-form input,
+.addgame-form textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid rgba(74, 144, 226, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1rem;
+  transition: 0.25s;
+}
+
+.addgame-form input:focus,
+.addgame-form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+}
+
+.form-check {
+  margin: 15px 0;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-accent-blue);
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  text-transform: uppercase;
+}
+
+.btn-submit:hover {
+  background: var(--color-accent-magenta);
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: #1C2036;
+  padding: 25px 35px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 350px;
+  box-shadow: 0 0 25px rgba(74,144,226,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.modal button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  background: var(--color-accent-blue);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.modal button:hover {
+  background: var(--color-accent-magenta);
 }

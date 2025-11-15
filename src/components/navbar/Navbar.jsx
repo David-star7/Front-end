@@ -1,27 +1,51 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
   return (
     <nav className="navbar">
-      <h1>🎮 GameTracker</h1>
-      <ul>
-        <li>
-          <Link to="/">Inicio</Link>
-        </li>
-        <li>
-          <Link to="/games">Videojuegos</Link>
-        </li>
-        <li>
-          <Link to="/add-game">Agregar Juego</Link>
-        </li>
-        <li>
-          <Link to="/reviews">Reseñas</Link>
-        </li>
-        <li>
-          <Link to="/add-review">Agregar Reseñas</Link>
-        </li>
-      </ul>
+      <div className="nav-content">
+
+        {/* LOGO */}
+        <Link to="/" className="nav-logo">
+          GameTracker 🎮
+        </Link>
+
+        {/* LINKS */}
+        <ul className="nav-links">
+          <li>
+            <NavLink to="/" end>
+              Inicio
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/games">
+              Juegos
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/add-game">
+              Añadir Juego
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/reviews">
+              Reseñas
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/add-review">
+              Añadir Reseña
+            </NavLink>
+          </li>
+        </ul>
+
+      </div>
     </nav>
   );
 }

@@ -1,35 +1,8 @@
 .footer-container {
-    
-    width: 100%;
-    background-color: var(--color-secondary-dark); 
-    padding: var(--spacing-md) var(--spacing-lg); 
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    color: var(--color-text-secondary); 
-    font-size: 0.9rem;
-    text-align: center;
-    border-top: 1px solid rgba(74, 144, 226, 0.2); 
-}
-
-.footer-content {
-    
-    max-width: 1200px;
-    width: 100%;
-}
-
-.footer-link {
-    color: var(--color-accent-blue);
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s;
-}
-
-.footer-link:hover {
-    color: var(--color-accent-magenta);
-}
-
-
-.copyright {
-    margin-top: var(--spacing-sm);
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  opacity: 0.7;
 }

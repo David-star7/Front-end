@@ -3,9 +3,10 @@ import { createGame } from "../../services/gameService";
 import "./AddGame.css";
 
 function AddGame() {
-  const API_URL = "http://localhost:4000/api/games";
 
-  const [formData, setFormData] = useState({
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const [form, setForm] = useState({
     titulo: "",
     genero: "",
     plataforma: "",
@@ -18,44 +19,23 @@ function AddGame() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
+    setForm({
+      ...form,
       [name]: type === "checkbox" ? checked : value,
     });
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
+
     try {
+      await createGame(form);
 
+      // Abrir modal
+      setModalOpen(true);
 
-      fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success:", data);
-          alert("Videojuego agregado exitosamente!");
-          setFormData({
-            titulo: "",
-            genero: "",
-            plataforma: "",
-            añoLanzamiento: "",
-            desarrollador: "",
-            imagenPortada: "",
-            descripcion: "",
-            completado: false,
-          });
-        });
-
-      /*
-// Usando el servicio createGame
-      await createGame(formData);
-      alert("Videojuego agregado exitosamente!");
-      setFormData({
+      // Limpiar formulario
+      setForm({
         titulo: "",
         genero: "",
         plataforma: "",
@@ -65,113 +45,122 @@ function AddGame() {
         descripcion: "",
         completado: false,
       });
-    
- */
+
     } catch (error) {
-      console.error("Error al guardar el videojuego:", error);
-      alert("Error al guardar el videojuego");
+      alert("Error al agregar el juego");
     }
   };
 
-
   return (
-    <div>
-      <h2>Agregar nuevo videojuego</h2>
-      <form onSubmit={handleSubmit} className="form">
-        <div className="form-group">
-          <input
-            type="text"
-            name="titulo"
-            value={formData.titulo}
-            onChange={handleChange}
-            placeholder=" "
-            required
-          />
-          <label>Título</label>
+    <>
+      {/* MODAL EMERGENTE */}
+      {modalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h3>🎉 Juego agregado correctamente</h3>
+            <button onClick={() => setModalOpen(false)}>Aceptar</button>
+          </div>
         </div>
+      )}
 
-        <div className="form-group">
-          <input
-            type="text"
-            name="genero"
-            value={formData.genero}
-            onChange={handleChange}
-            placeholder=" "
-            required
-          />
-          <label>Género</label>
+      <div className="addgame-container">
+        <div className="addgame-card">
+          <h2>🎮 Agregar Nuevo Juego</h2>
+
+          <form onSubmit={handleSubmit} className="addgame-form">
+
+            <div className="form-group">
+              <label>Título del juego</label>
+              <input
+                type="text"
+                name="titulo"
+                value={form.titulo}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Género</label>
+              <input
+                type="text"
+                name="genero"
+                value={form.genero}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Plataforma</label>
+              <input
+                type="text"
+                name="plataforma"
+                value={form.plataforma}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Año de lanzamiento</label>
+              <input
+                type="number"
+                name="añoLanzamiento"
+                value={form.añoLanzamiento}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Desarrollador</label>
+              <input
+                type="text"
+                name="desarrollador"
+                value={form.desarrollador}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Imagen (URL)</label>
+              <input
+                type="text"
+                name="imagenPortada"
+                value={form.imagenPortada}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Descripción</label>
+              <textarea
+                name="descripcion"
+                value={form.descripcion}
+                onChange={handleChange}
+              ></textarea>
+            </div>
+
+            <div className="form-check">
+              <label>
+                <input
+                  type="checkbox"
+                  name="completado"
+                  checked={form.completado}
+                  onChange={handleChange}
+                />
+                ¿Completado?
+              </label>
+            </div>
+
+            <button type="submit" className="btn-submit">
+              Guardar Juego
+            </button>
+          </form>
         </div>
-
-        <div className="form-group">
-          <input
-            type="text"
-            name="plataforma"
-            value={formData.plataforma}
-            onChange={handleChange}
-            placeholder=" "
-            required
-          />
-          <label>Plataforma</label>
-        </div>
-
-        <div className="form-group">
-          <input
-            type="number"
-            name="añoLanzamiento"
-            value={formData.añoLanzamiento}
-            onChange={handleChange}
-            placeholder=" "
-            required
-          />
-          <label>Año de lanzamiento</label>
-        </div>
-
-        <div className="form-group">
-          <input
-            type="text"
-            name="desarrollador"
-            value={formData.desarrollador}
-            onChange={handleChange}
-            placeholder=" "
-            required
-          />
-          <label>Desarrollador</label>
-        </div>
-
-        <div className="form-group">
-          <input
-            type="text"
-            name="imagenPortada"
-            value={formData.imagenPortada}
-            onChange={handleChange}
-            placeholder=" "
-          />
-          <label>URL de la portada</label>
-        </div>
-
-        <div className="form-group">
-          <textarea
-            name="descripcion"
-            value={formData.descripcion}
-            onChange={handleChange}
-            placeholder=" "
-          />
-          <label>Descripción</label>
-        </div>
-
-        <label>
-          <input
-            type="checkbox"
-            name="completado"
-            checked={formData.completado}
-            onChange={handleChange}
-          />
-          Completado
-        </label>
-
-        <button type="submit">Guardar</button>
-      </form>
-    </div>
+      </div>
+    </>
   );
 }
 

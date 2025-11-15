@@ -1,63 +1,57 @@
-
-
 .game-card {
-
-    background-color: var(--color-secondary-dark); 
-    border-radius: 8px;
-    padding: var(--spacing-md);
-    overflow: hidden; 
-    
-    
-    transition: all 0.3s ease-in-out;
-    border: 1px solid transparent; 
-    
-    
-    display: flex;
-    flex-direction: column;
+  background: var(--color-secondary-dark);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .game-card:hover {
-   
-    border: 1px solid var(--color-accent-blue);
-    box-shadow: 0 0 15px var(--color-glow-shadow); 
-    transform: translateY(-5px); /* Pequeño levantamiento para darle interactividad */
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(74, 144, 226, 0.4);
 }
 
-
-.game-card-image {
-    width: 100%;
-    height: auto; 
-    object-fit: cover;
-    border-radius: 4px; 
-    margin-bottom: var(--spacing-sm);
+.game-image {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
 }
 
-
-.game-card-title {
-    font-size: 1.2rem;
-    color: var(--color-text-light);
-    margin-bottom: var(--spacing-sm);
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
+.game-info {
+  padding: 16px;
 }
 
-.game-card-platform {
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-md);
+.game-title {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
 }
 
-
-.game-card-rating {
-    color: var(--color-accent-magenta); 
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-sm);
+.game-meta {
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
 }
 
+.game-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
 
-.game-card .btn-details {
-    margin-top: auto; 
-    padding: 8px;
-    font-size: 0.9rem;
+.badge {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.completed {
+  background: rgba(76, 230, 120, 0.15);
+  color: #4ce678;
+}
+
+.pending {
+  background: rgba(255, 105, 180, 0.15);
+  color: var(--color-accent-magenta);
 }
