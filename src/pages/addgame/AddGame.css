@@ -1,3 +1,5 @@
+
+
 .addgame-container {
   display: flex;
   justify-content: center;
@@ -31,6 +33,7 @@
 .addgame-form label {
   font-weight: 600;
   margin-bottom: 6px;
+  color: var(--color-text-light);
 }
 
 .addgame-form input,
@@ -51,8 +54,20 @@
   box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
 }
 
+.addgame-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
 .form-check {
   margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-check input {
+  width: auto;
 }
 
 .btn-submit {
@@ -66,6 +81,7 @@
   transition: 0.3s;
   color: white;
   text-transform: uppercase;
+  font-size: 1rem;
 }
 
 .btn-submit:hover {
@@ -73,42 +89,105 @@
   box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
 }
 
+/* ========== MODAL MEJORADO ========== */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 200;
+  z-index: 1000;
   backdrop-filter: blur(4px);
 }
 
 .modal {
-  background: #1C2036;
-  padding: 25px 35px;
-  border-radius: 12px;
+  background: var(--color-secondary-dark);
+  padding: 40px 30px;
+  border-radius: 20px;
   text-align: center;
-  max-width: 350px;
-  box-shadow: 0 0 25px rgba(74,144,226,0.4);
-  border: 1px solid rgba(255,255,255,0.1);
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 30px rgba(74, 144, 226, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: modalAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.modal button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  background: var(--color-accent-blue);
+.success-modal {
+  background: linear-gradient(135deg, #1C2036, #2a2f4d);
+  border: 1px solid rgba(76, 230, 120, 0.3);
+  box-shadow: 0 0 40px rgba(76, 230, 120, 0.2);
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  80% {
+    transform: translateY(-7px);
+  }
+}
+
+.modal h3 {
+  color: #4ce678;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.modal p {
+  margin-bottom: 25px;
+  line-height: 1.5;
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.btn-accept {
+  background: linear-gradient(135deg, #4ce678, #3cd465);
   color: white;
   border: none;
+  padding: 15px 40px;
+  border-radius: 12px;
+  font-weight: bold;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(76, 230, 120, 0.3);
 }
 
-.modal button:hover {
-  background: var(--color-accent-magenta);
+.btn-accept:hover {
+  background: linear-gradient(135deg, #3cd465, #2ec354);
+  box-shadow: 0 6px 20px rgba(76, 230, 120, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-accept:active {
+  transform: translateY(0);
 }

@@ -1,10 +1,11 @@
+
 import { useState } from "react";
 import { createGame } from "../../services/gameService";
 import "./AddGame.css";
 
 function AddGame() {
-
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const [form, setForm] = useState({
     titulo: "",
@@ -31,7 +32,8 @@ function AddGame() {
     try {
       await createGame(form);
 
-      // Abrir modal
+      // Mostrar modal de éxito con mensaje personalizado
+      setModalMessage(`🎮 ¡"${form.titulo}" agregado correctamente!`);
       setModalOpen(true);
 
       // Limpiar formulario
@@ -47,18 +49,27 @@ function AddGame() {
       });
 
     } catch (error) {
-      alert("Error al agregar el juego");
+      // Mostrar modal de error
+      setModalMessage("❌ Error al agregar el juego");
+      setModalOpen(true);
     }
   };
 
   return (
     <>
-      {/* MODAL EMERGENTE */}
+      {/* MODAL EMERGENTE MEJORADO */}
       {modalOpen && (
         <div className="modal-overlay">
-          <div className="modal-box">
-            <h3>🎉 Juego agregado correctamente</h3>
-            <button onClick={() => setModalOpen(false)}>Aceptar</button>
+          <div className="modal success-modal">
+            <div className="modal-icon">🎮</div>
+            <h3>¡Éxito!</h3>
+            <p>{modalMessage}</p>
+            <button 
+              className="btn-accept"
+              onClick={() => setModalOpen(false)}
+            >
+              ACEPTAR
+            </button>
           </div>
         </div>
       )}

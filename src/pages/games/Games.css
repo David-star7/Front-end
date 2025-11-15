@@ -15,7 +15,231 @@
   gap: 22px;
 }
 
-/* Responsivo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: var(--color-secondary-dark);
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal h3 {
+  color: var(--color-accent-magenta);
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.modal p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: var(--color-text-light);
+}
+
+.warning-text {
+  color: #ff6b6b !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.btn-cancel, .btn-confirm-delete {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  min-width: 120px;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 2px solid var(--color-text-secondary);
+  color: var(--color-text-secondary);
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background: var(--color-text-secondary);
+  color: var(--color-primary-dark);
+}
+
+.btn-confirm-delete {
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btn-confirm-delete:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ff4757, #ff3742);
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+}
+
+.btn-cancel:disabled, .btn-confirm-delete:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Loading y Error States */
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  grid-column: 1 / -1;
+}
+
+.loading {
+  color: var(--color-accent-blue);
+}
+
+.error {
+  color: var(--color-accent-magenta);
+}
+
+.edit-modal {
+  max-width: 450px;
+  text-align: left;
+}
+
+.game-preview {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.preview-info h4 {
+  color: var(--color-text-light);
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.preview-info p {
+  color: var(--color-text-secondary);
+  margin: 2px 0;
+  font-size: 0.9rem;
+}
+
+.info-text {
+  color: var(--color-accent-blue) !important;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(74, 144, 226, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-accent-blue);
+}
+
+.btn-confirm-edit {
+  background: linear-gradient(135deg, var(--color-accent-blue), #5a9dee);
+  color: white;
+  border: 2px solid transparent;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  min-width: 140px;
+}
+
+.btn-confirm-edit:hover {
+  background: linear-gradient(135deg, #5a9dee, #6aa8ff);
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Mejoras para los modales existentes */
+.modal h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  color: var(--color-accent-magenta);
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.edit-modal h3 {
+  color: var(--color-accent-blue);
+}
+
+.modal p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.modal strong {
+  color: var(--color-accent-blue);
+  font-weight: 600;
+}
+
+/* Animación mejorada para modales */
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal {
+  animation: modalAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 @media (max-width: 1200px) {
   .games-grid {
     grid-template-columns: repeat(3, 1fr);

@@ -1,4 +1,4 @@
-// pages/addreview/AddReview.jsx - CORREGIDO
+// pages/addreview/AddReview.jsx - CÓDIGO COMPLETO
 import { useState, useEffect } from "react";
 import { createReview, getGamesForReview } from "../../services/reviewService";
 import "./AddReview.css";
@@ -19,6 +19,7 @@ function AddReview() {
     recomendaria: true
   });
 
+  // Cargar juegos para el select
   useEffect(() => {
     async function loadGames() {
       try {
@@ -86,6 +87,7 @@ function AddReview() {
 
   return (
     <>
+      {/* MODAL DE ÉXITO */}
       {modalOpen && (
         <div className="modal-overlay">
           <div className="modal">
@@ -114,6 +116,7 @@ function AddReview() {
 
           <form onSubmit={handleSubmit} className="addreview-form">
             
+            {/* SELECTOR DE JUEGO MEJORADO */}
             <div className="form-group">
               <label>Juego *</label>
               <select
@@ -122,10 +125,19 @@ function AddReview() {
                 onChange={handleChange}
                 required
                 disabled={loading || games.length === 0}
+                style={{ 
+                  color: form.juegoId ? 'var(--color-text-light)' : 'var(--color-text-secondary)'
+                }}
               >
-                <option value="">{games.length === 0 ? "No hay juegos disponibles" : "Selecciona un juego"}</option>
+                <option value="" style={{ color: 'var(--color-text-secondary)' }}>
+                  {games.length === 0 ? "No hay juegos disponibles" : "Selecciona un juego"}
+                </option>
                 {games.map((game) => (
-                  <option key={game._id} value={game._id}>
+                  <option 
+                    key={game._id} 
+                    value={game._id}
+                    style={{ color: 'var(--color-text-light)' }}
+                  >
                     {game.titulo} - {game.plataforma} ({game.añoLanzamiento})
                   </option>
                 ))}
@@ -137,6 +149,7 @@ function AddReview() {
               )}
             </div>
 
+            {/* USUARIO */}
             <div className="form-group">
               <label>Tu nombre *</label>
               <input
@@ -150,6 +163,7 @@ function AddReview() {
               />
             </div>
 
+            {/* CALIFICACIÓN */}
             <div className="form-group">
               <label>Calificación *</label>
               <select
@@ -158,15 +172,17 @@ function AddReview() {
                 onChange={handleChange}
                 required
                 disabled={loading}
+                style={{ color: 'var(--color-text-light)' }}
               >
-                <option value="5">⭐⭐⭐⭐⭐ (5) - Excelente</option>
-                <option value="4">⭐⭐⭐⭐ (4) - Muy Bueno</option>
-                <option value="3">⭐⭐⭐ (3) - Bueno</option>
-                <option value="2">⭐⭐ (2) - Regular</option>
-                <option value="1">⭐ (1) - Malo</option>
+                <option value="5" style={{ color: 'var(--color-text-light)' }}>⭐⭐⭐⭐⭐ (5) - Excelente</option>
+                <option value="4" style={{ color: 'var(--color-text-light)' }}>⭐⭐⭐⭐ (4) - Muy Bueno</option>
+                <option value="3" style={{ color: 'var(--color-text-light)' }}>⭐⭐⭐ (3) - Bueno</option>
+                <option value="2" style={{ color: 'var(--color-text-light)' }}>⭐⭐ (2) - Regular</option>
+                <option value="1" style={{ color: 'var(--color-text-light)' }}>⭐ (1) - Malo</option>
               </select>
             </div>
 
+            {/* HORAS JUGADAS */}
             <div className="form-group">
               <label>Horas jugadas *</label>
               <input
@@ -181,6 +197,7 @@ function AddReview() {
               />
             </div>
 
+            {/* DIFICULTAD */}
             <div className="form-group">
               <label>Dificultad *</label>
               <select
@@ -189,15 +206,17 @@ function AddReview() {
                 onChange={handleChange}
                 required
                 disabled={loading}
+                style={{ color: 'var(--color-text-light)' }}
               >
-                <option value="Muy Fácil">Muy Fácil</option>
-                <option value="Fácil">Fácil</option>
-                <option value="Media">Media</option>
-                <option value="Difícil">Difícil</option>
-                <option value="Muy Difícil">Muy Difícil</option>
+                <option value="Muy Fácil" style={{ color: 'var(--color-text-light)' }}>Muy Fácil</option>
+                <option value="Fácil" style={{ color: 'var(--color-text-light)' }}>Fácil</option>
+                <option value="Media" style={{ color: 'var(--color-text-light)' }}>Media</option>
+                <option value="Difícil" style={{ color: 'var(--color-text-light)' }}>Difícil</option>
+                <option value="Muy Difícil" style={{ color: 'var(--color-text-light)' }}>Muy Difícil</option>
               </select>
             </div>
 
+            {/* COMENTARIO */}
             <div className="form-group">
               <label>Comentario *</label>
               <textarea
@@ -211,6 +230,7 @@ function AddReview() {
               ></textarea>
             </div>
 
+            {/* RECOMENDACIÓN */}
             <div className="form-check">
               <label>
                 <input
@@ -229,7 +249,7 @@ function AddReview() {
               className="btn-submit"
               disabled={loading || games.length === 0}
             >
-              {loading ? "Cargando..." : "Publicar Reseña"}
+              {loading ? "Cargando..." : "📝 Publicar Reseña"}
             </button>
           </form>
         </div>

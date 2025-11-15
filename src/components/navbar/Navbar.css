@@ -1,3 +1,4 @@
+
 .navbar {
   width: 100%;
   backdrop-filter: blur(12px);
@@ -22,6 +23,7 @@
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-accent-blue);
+  text-decoration: none;
 }
 
 .nav-links {
@@ -37,6 +39,7 @@
   padding: 6px 10px;
   border-radius: 6px;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .nav-links li a:hover {
@@ -47,4 +50,21 @@
 .nav-links li a.active {
   background: rgba(255, 255, 255, 0.15);
   color: var(--color-accent-blue);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nav-links {
+    gap: 15px;
+  }
+  
+  .nav-links li a {
+    padding: 4px 8px;
+    font-size: 0.9rem;
+  }
 }
