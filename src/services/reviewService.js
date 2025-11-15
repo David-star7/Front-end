@@ -1,3 +1,4 @@
+// services/reviewService.js - ACTUALIZADO
 const API_URL = "http://localhost:3000/api/reviews";
 
 export const getReviews = async () => {
@@ -23,5 +24,18 @@ export const createReview = async (reviewData) => {
     } catch (error) {
         console.error(error);
         throw error;
+    }
+};
+
+
+export const getGamesForReview = async () => {
+    try {
+        const response = await fetch("http://localhost:3000/api/games");
+        if (!response.ok) throw new Error("Error al obtener juegos");
+        const data = await response.json();
+        return data.data || data;
+    } catch (error) {
+        console.error(error);
+        return [];
     }
 };
