@@ -63,6 +63,21 @@
   color: var(--color-text-secondary);
 }
 
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  grid-column: 1 / -1;
+}
+
+.loading {
+  color: var(--color-accent-blue);
+}
+
+.error {
+  color: var(--color-accent-magenta);
+}
+
 /* Responsivo */
 @media (max-width: 900px) {
   .reviews-grid {

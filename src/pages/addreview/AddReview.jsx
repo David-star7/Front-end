@@ -1,10 +1,12 @@
-// pages/addreview/AddReview.jsx - COMPLETAMENTE CORREGIDO
+// pages/addreview/AddReview.jsx - CORREGIDO
 import { useState, useEffect } from "react";
 import { createReview, getGamesForReview } from "../../services/reviewService";
 import "./AddReview.css";
 
 function AddReview() {
   const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   
   const [form, setForm] = useState({
@@ -17,12 +19,25 @@ function AddReview() {
     recomendaria: true
   });
 
-  // Cargar juegos para el select
   useEffect(() => {
     async function loadGames() {
-      const gamesData = await getGamesForReview();
-      setGames(gamesData);
+      try {
+        setLoading(true);
+        setError(null);
+        const gamesData = await getGamesForReview();
+        setGames(gamesData);
+        
+        if (gamesData.length === 0) {
+          setError("No se encontraron juegos. Asegúrate de tener juegos creados primero.");
+        }
+      } catch (err) {
+        console.error("Error cargando juegos:", err);
+        setError("Error al cargar los juegos. Verifica que el backend esté funcionando.");
+      } finally {
+        setLoading(false);
+      }
     }
+    
     loadGames();
   }, []);
 
@@ -37,13 +52,22 @@ function AddReview() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    if (!form.juegoId) {
+      alert("Por favor selecciona un juego");
+      return;
+    }
+    
     try {
-      await createReview(form);
+      const reviewData = {
+        ...form,
+        horasJugadas: parseInt(form.horasJugadas),
+        calificacion: parseInt(form.calificacion)
+      };
       
-      // Mostrar modal de éxito
+      console.log("Enviando reseña:", reviewData);
+      await createReview(reviewData);
+      
       setModalOpen(true);
-      
-      // Limpiar formulario
       setForm({
         juegoId: "",
         usuario: "",
@@ -56,12 +80,12 @@ function AddReview() {
       
     } catch (error) {
       alert("Error al crear la reseña: " + error.message);
+      console.error("Error detallado:", error);
     }
   };
 
   return (
     <>
-      {/* MODAL DE ÉXITO */}
       {modalOpen && (
         <div className="modal-overlay">
           <div className="modal">
@@ -76,9 +100,20 @@ function AddReview() {
         <div className="addreview-card">
           <h2>✍️ Crear Nueva Reseña</h2>
 
+          {loading && (
+            <div className="loading-message">
+              <p>Cargando juegos disponibles...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="error-message">
+              <p>{error}</p>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="addreview-form">
             
-            {/* SELECTOR DE JUEGO */}
             <div className="form-group">
               <label>Juego *</label>
               <select
@@ -86,17 +121,22 @@ function AddReview() {
                 value={form.juegoId}
                 onChange={handleChange}
                 required
+                disabled={loading || games.length === 0}
               >
-                <option value="">Selecciona un juego</option>
+                <option value="">{games.length === 0 ? "No hay juegos disponibles" : "Selecciona un juego"}</option>
                 {games.map((game) => (
                   <option key={game._id} value={game._id}>
-                    {game.titulo} - {game.plataforma}
+                    {game.titulo} - {game.plataforma} ({game.añoLanzamiento})
                   </option>
                 ))}
               </select>
+              {games.length > 0 && (
+                <small className="help-text">
+                  {games.length} juego(s) disponible(s)
+                </small>
+              )}
             </div>
 
-            {/* USUARIO */}
             <div className="form-group">
               <label>Tu nombre *</label>
               <input
@@ -106,10 +146,10 @@ function AddReview() {
                 onChange={handleChange}
                 placeholder="Ej: David"
                 required
+                disabled={loading}
               />
             </div>
 
-            {/* CALIFICACIÓN */}
             <div className="form-group">
               <label>Calificación *</label>
               <select
@@ -117,6 +157,7 @@ function AddReview() {
                 value={form.calificacion}
                 onChange={handleChange}
                 required
+                disabled={loading}
               >
                 <option value="5">⭐⭐⭐⭐⭐ (5) - Excelente</option>
                 <option value="4">⭐⭐⭐⭐ (4) - Muy Bueno</option>
@@ -126,7 +167,6 @@ function AddReview() {
               </select>
             </div>
 
-            {/* HORAS JUGADAS */}
             <div className="form-group">
               <label>Horas jugadas *</label>
               <input
@@ -137,10 +177,10 @@ function AddReview() {
                 placeholder="Ej: 45"
                 min="1"
                 required
+                disabled={loading}
               />
             </div>
 
-            {/* DIFICULTAD */}
             <div className="form-group">
               <label>Dificultad *</label>
               <select
@@ -148,6 +188,7 @@ function AddReview() {
                 value={form.dificultad}
                 onChange={handleChange}
                 required
+                disabled={loading}
               >
                 <option value="Muy Fácil">Muy Fácil</option>
                 <option value="Fácil">Fácil</option>
@@ -157,7 +198,6 @@ function AddReview() {
               </select>
             </div>
 
-            {/* COMENTARIO */}
             <div className="form-group">
               <label>Comentario *</label>
               <textarea
@@ -167,10 +207,10 @@ function AddReview() {
                 placeholder="Escribe tu experiencia con el juego..."
                 rows="4"
                 required
+                disabled={loading}
               ></textarea>
             </div>
 
-            {/* RECOMENDACIÓN */}
             <div className="form-check">
               <label>
                 <input
@@ -178,13 +218,18 @@ function AddReview() {
                   name="recomendaria"
                   checked={form.recomendaria}
                   onChange={handleChange}
+                  disabled={loading}
                 />
                 ¿Recomendarías este juego?
               </label>
             </div>
 
-            <button type="submit" className="btn-submit">
-              📝 Publicar Reseña
+            <button 
+              type="submit" 
+              className="btn-submit"
+              disabled={loading || games.length === 0}
+            >
+              {loading ? "Cargando..." : "Publicar Reseña"}
             </button>
           </form>
         </div>
